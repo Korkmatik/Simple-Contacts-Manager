@@ -22,19 +22,9 @@ public class ListContacts extends State {
     public State handle() {
         printHeader();
         printContacts();
-        waitForKeyInput();
+        waitForEnterKeyInput(nextState.toString());
 
         return nextState;
-    }
-
-    private void waitForKeyInput() {
-        System.out.println("Press [ENTER] to return to the Menu");
-        BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(System.in));
-        try {
-            bufferedReader.readLine();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
     }
 
     private void printContacts() {
@@ -52,7 +42,7 @@ public class ListContacts extends State {
             }
         }
 
-        if (personen.doesDatabaseContaintMoreContacts()) {
+        if (personen.doesDatabaseContainMoreContacts()) {
             System.out.print("Do you want to print more contacts? (y/n) ");
 
 

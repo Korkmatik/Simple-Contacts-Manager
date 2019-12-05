@@ -34,7 +34,7 @@ public class CreateContact extends State {
             char decision;
             do {
                 System.out.println("---------------------------------------------");
-                System.out.println(person.toString());
+                System.out.println(person.toString() + "\n");
                 System.out.print("Do you really want to save this Contact? (y/n) ");
                 decision = bufferedReader.readLine().trim().toLowerCase().charAt(0);
 
@@ -61,6 +61,8 @@ public class CreateContact extends State {
             System.out.println("Error while trying to read from console: ");
             e.printStackTrace();
         }
+
+        waitForEnterKeyInput(nextState.toString());
 
         return nextState;
     }

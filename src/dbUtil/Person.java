@@ -1,8 +1,5 @@
 package dbUtil;
 
-import Application.State;
-import com.sun.source.util.SimpleTreeVisitor;
-
 import java.sql.*;
 
 public class Person {
@@ -16,14 +13,6 @@ public class Person {
     private static final String COLUMN_STREET = "street";
 
     private int personID;
-
-    public String getFirstName() {
-        return firstName;
-    }
-
-    public String getLastName() {
-        return lastName;
-    }
 
     private String firstName;
     private String lastName;
@@ -51,6 +40,14 @@ public class Person {
         this.email = email;
         this.street = street;
         this.personID = personID;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
     }
 
     public void saveToDatabase() throws SQLException {
@@ -108,8 +105,6 @@ public class Person {
             String email = allRowsInTable.getString(COLUMN_EMAIL);
             String street = allRowsInTable.getString(COLUMN_STREET);
 
-
-
             return new Person(personID, firstName, lastName, phoneNumber, email, street);
         }
 
@@ -126,7 +121,7 @@ public class Person {
         return null;
     }
 
-    public boolean doesDatabaseContaintMoreContacts() {
+    public boolean doesDatabaseContainMoreContacts() {
         return isAllRowsInTableResultSetEmpty;
     }
 

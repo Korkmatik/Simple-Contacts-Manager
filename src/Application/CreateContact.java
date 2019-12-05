@@ -52,7 +52,6 @@ public class CreateContact extends State {
                     System.out.printf("Could not save '%s %s' due to an error!\n", person.getFirstName(), person.getLastName());
                     e.printStackTrace();
                 }
-
             }
             else {
                 System.out.printf("'%s %s' won't be saved!\n", person.getFirstName(), person.getLastName());

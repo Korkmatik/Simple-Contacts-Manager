@@ -14,6 +14,7 @@ public class Menu extends Application.State {
         nextStates = new ArrayList<>();
 
         nextStates.add(new CreateContact(this));
+        nextStates.add(new ExitApplication());
     }
 
     @Override

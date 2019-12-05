@@ -1,9 +1,9 @@
 package dbUtil;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.SQLException;
-import java.sql.Statement;
+import Application.State;
+import com.sun.source.util.SimpleTreeVisitor;
+
+import java.sql.*;
 
 public class Person {
     private static final String TABLE_NAME = "Person";
@@ -31,12 +31,26 @@ public class Person {
     private String email;
     private String street;
 
+    private Connection allRowsInTableConnection;
+    private Statement allRowsInTableStatement;
+    private ResultSet allRowsInTable;
+    private boolean isAllRowsInTableResultSetEmpty = true;
+
+    public Person() {
+
+    }
+
     public Person(String firstName, String lastName, String phoneNumber, String email, String street) {
+        this(-1, firstName, lastName, phoneNumber, email, street);
+    }
+
+    public Person(int personID, String firstName, String lastName, String phoneNumber, String email, String street) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.street = street;
+        this.personID = personID;
     }
 
     public void saveToDatabase() throws SQLException {
@@ -70,6 +84,50 @@ public class Person {
         if (connection != null) {
             connection.close();
         }
+    }
+
+    public Person next() throws SQLException {
+        if (allRowsInTable == null) {
+            allRowsInTableConnection = DBUtil.getConnection();
+            allRowsInTableStatement = allRowsInTableConnection.createStatement();
+
+            String sql = String.format("SELECT * FROM %s", TABLE_NAME);
+            System.out.println("Load all sql: " + sql);
+
+            allRowsInTable = allRowsInTableStatement.executeQuery(sql);
+        }
+
+        isAllRowsInTableResultSetEmpty = true;
+
+        while (allRowsInTable.next()) {
+            isAllRowsInTableResultSetEmpty = false;
+            int personID = allRowsInTable.getInt(COLUMN_PERSON_ID);
+            String firstName = allRowsInTable.getString(COLUMN_FIRST_NAME);
+            String lastName = allRowsInTable.getString(COLUMN_LAST_NAME);
+            String phoneNumber = allRowsInTable.getString(COLUMN_PHONE_NUMBER);
+            String email = allRowsInTable.getString(COLUMN_EMAIL);
+            String street = allRowsInTable.getString(COLUMN_STREET);
+
+
+
+            return new Person(personID, firstName, lastName, phoneNumber, email, street);
+        }
+
+        if (isAllRowsInTableResultSetEmpty) {
+            allRowsInTable.close();
+            allRowsInTableStatement.close();
+            allRowsInTableConnection.close();
+
+            allRowsInTable = null;
+            allRowsInTableStatement = null;
+            allRowsInTableConnection = null;
+        }
+
+        return null;
+    }
+
+    public boolean doesDatabaseContaintMoreContacts() {
+        return isAllRowsInTableResultSetEmpty;
     }
 
     @Override

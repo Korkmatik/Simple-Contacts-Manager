@@ -15,6 +15,7 @@ public class Menu extends Application.State {
 
         nextStates.add(new CreateContact(this));
         nextStates.add(new ListContacts(this));
+        nextStates.add(new UpdateContact(this));
         nextStates.add(new ExitApplication());
     }
 

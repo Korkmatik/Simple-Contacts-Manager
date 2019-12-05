@@ -9,8 +9,8 @@ public class Person {
     private static final String TABLE_NAME = "Person";
 
     private static final String COLUMN_PERSON_ID = "Person_ID";
-    private static final String COLUMN_LASTNAME = "lastname";
-    private static final String COLUMN_FIRSTNAME = "firstname";
+    private static final String COLUMN_LAST_NAME = "lastname";
+    private static final String COLUMN_FIRST_NAME = "firstname";
     private static final String COLUMN_PHONE_NUMBER = "phone_number";
     private static final String COLUMN_EMAIL = "email";
     private static final String COLUMN_STREET = "street";
@@ -94,8 +94,8 @@ public class Person {
                 "%s TEXT, " +
                 "%s TEXT)",
                 TABLE_NAME,
-                COLUMN_PERSON_ID, COLUMN_LASTNAME,
-                COLUMN_FIRSTNAME, COLUMN_PHONE_NUMBER,
+                COLUMN_PERSON_ID, COLUMN_LAST_NAME,
+                COLUMN_FIRST_NAME, COLUMN_PHONE_NUMBER,
                 COLUMN_EMAIL, COLUMN_STREET
                 );
 

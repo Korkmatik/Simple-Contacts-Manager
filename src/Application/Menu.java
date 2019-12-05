@@ -12,6 +12,8 @@ public class Menu extends Application.State {
 
     public Menu() {
         nextStates = new ArrayList<>();
+
+        nextStates.add(new CreateContact(this));
     }
 
     @Override
@@ -63,7 +65,7 @@ public class Menu extends Application.State {
 
     private void printUI() {
         for (int i = 0; i < nextStates.size(); i++) {
-            System.out.println(i + " - " + nextStates.get(i).toString());
+            System.out.printf("%d - %s\n", i, nextStates.get(i).toString());
         }
     }
 

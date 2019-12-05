@@ -1,3 +1,4 @@
 out/
 .idea/
 CLI_Contact_Manager.iml
+Contacts.sqlite

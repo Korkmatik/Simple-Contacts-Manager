@@ -12,7 +12,7 @@ public class Context {
 
     public void run() {
         while (true) {
-            currentState.handle();
+            currentState = currentState.handle();
         }
     }
 }

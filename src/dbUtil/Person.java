@@ -262,6 +262,19 @@ public class Person {
         connection.close();
     }
 
+    public static void deleteByID(int id) throws SQLException {
+        String sql = String.format("DELETE FROM %s WHERE %s = ?", TABLE_NAME, COLUMN_PERSON_ID);
+
+        Connection connection = DBUtil.getConnection();
+        PreparedStatement preparedStatement = connection.prepareStatement(sql);
+
+        preparedStatement.setInt(1, id);
+        preparedStatement.execute();
+
+        preparedStatement.close();
+        connection.close();
+    }
+
     @Override
     public String toString() {
         String toString = "";

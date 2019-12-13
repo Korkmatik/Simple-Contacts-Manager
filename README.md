@@ -8,5 +8,6 @@ After starting the application, the menu should guide you through.
 <img src="screenshots/menu.png" width="50%"/>
 
 # What I've learned
-- Using the State Design Pattern to make the diffrent states of the UI.
+- Using the State Design Pattern
 - Managing Data in a database with JDBC
+- Implementing CRUD operations
